@@ -1,1 +1,411 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卓球クラブ - クラブ紹介</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    body {
+        font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .hero-section {
+        text-align: center;
+        color: white;
+        margin-bottom: 60px;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        opacity: 0.9;
+    }
+
+    .content-section {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .content-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+        color: #4a5568;
+        margin-bottom: 25px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        border-radius: 2px;
+    }
+
+    .club-intro {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #2d3748;
+        margin-bottom: 30px;
+    }
+
+    .coach-profile {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 30px;
+        padding: 25px;
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        border-radius: 15px;
+        border-left: 5px solid #667eea;
+    }
+
+    .coach-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .coach-info h3 {
+        font-size: 1.5rem;
+        color: #2d3748;
+        margin-bottom: 10px;
+    }
+
+    .coach-info p {
+        color: #4a5568;
+        line-height: 1.6;
+    }
+
+    .course-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .course-table th {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 20px;
+        text-align: left;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .course-table td {
+        padding: 20px;
+        border-bottom: 1px solid #e2e8f0;
+        font-size: 1rem;
+    }
+
+    .course-table tr:nth-child(even) {
+        background: #f8fafc;
+    }
+
+    .course-table tr:hover {
+        background: #e6fffa;
+        transform: scale(1.02);
+        transition: all 0.3s ease;
+    }
+
+    .price {
+        font-weight: bold;
+        color: #667eea;
+        font-size: 1.1rem;
+    }
+
+    .steps-container {
+        display: flex;
+        gap: 30px;
+        margin: 30px 0;
+    }
+
+    .step {
+        flex: 1;
+        text-align: center;
+        padding: 30px 20px;
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        border-radius: 15px;
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+
+    .step:hover {
+        transform: translateY(-10px);
+    }
+
+    .step-number {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 auto 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .step h4 {
+        font-size: 1.3rem;
+        color: #2d3748;
+        margin-bottom: 15px;
+    }
+
+    .step p {
+        color: #4a5568;
+        line-height: 1.5;
+    }
+
+    .cta-section {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 20px 40px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-button.primary {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    .cta-button.secondary {
+        background: linear-gradient(135deg, #48bb78, #38a169);
+        color: white;
+        box-shadow: 0 10px 30px rgba(72, 187, 120, 0.4);
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .cta-button:hover::before {
+        left: 100%;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .highlight {
+        background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2rem;
+        }
+        
+        .steps-container {
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .coach-profile {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .course-table {
+            font-size: 0.9rem;
+        }
+        
+        .course-table th,
+        .course-table td {
+            padding: 15px 10px;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero-section">
+            <h1 class="hero-title">卓球で人生を変える</h1>
+            <p class="hero-subtitle">あなたの可能性を最大限に引き出します</p>
+        </div>
+    <div class="content-section">
+        <h2 class="section-title">クラブ紹介</h2>
+        <div class="club-intro">
+            渋谷駅から徒歩5分、最新設備を完備した当クラブは2024年に設立されました。初心者から上級者まで、一人ひとりのレベルに合わせた丁寧な指導で、卓球の楽しさと奥深さを体感していただけます。5台の専用台と最新練習ロボットを完備し、効率的な上達をサポート。経験豊富なコーチ陣が、基礎から応用まで段階的に指導します。アットホームな雰囲気の中で、仲間とともに成長できる環境をご用意しています。<span class="highlight">「やったことがない」から「全国大会出場」まで</span>、あなたの卓球人生をしっかりサポートします。
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">代表コーチプロフィール</h2>
+        <div class="coach-profile">
+            <div class="coach-avatar">田中</div>
+            <div class="coach-info">
+                <h3>田中 健太郎</h3>
+                <p>全日本卓球選手権大会出場経験を持つ元実業団選手。指導歴15年、200名以上の選手を育成。「楽しく、確実に上達する」をモットーに、一人ひとりの特性を活かした指導を行っています。日本卓球協会公認コーチ資格保有。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">レッスンコース一覧</h2>
+        <table class="course-table">
+            <thead>
+                <tr>
+                    <th>コース名</th>
+                    <th>対象レベル</th>
+                    <th>料金（月額）</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>初心者コース</td>
+                    <td>未経験〜初心者</td>
+                    <td class="price">8,000円</td>
+                </tr>
+                <tr>
+                    <td>中級コース</td>
+                    <td>経験者〜中級者</td>
+                    <td class="price">10,000円</td>
+                </tr>
+                <tr>
+                    <td>上級コース</td>
+                    <td>上級者〜競技者</td>
+                    <td class="price">12,000円</td>
+                </tr>
+                <tr>
+                    <td>ジュニアコース</td>
+                    <td>小学生〜中学生</td>
+                    <td class="price">6,000円</td>
+                </tr>
+                <tr>
+                    <td>プライベートレッスン</td>
+                    <td>全レベル対応</td>
+                    <td class="price">15,000円</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="content-section">
+        <h2 class="section-title">体験レッスンのご案内</h2>
+        <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.3rem; color: #4a5568;">簡単3ステップで始められます！</h3>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>お申し込み</h4>
+                <p>下記のLINE友だち追加またはお問い合わせフォームからお気軽にご連絡ください。</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>日程調整</h4>
+                <p>ご都合の良い日時をお伺いし、体験レッスンの日程を決定します。</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>体験レッスン参加</h4>
+                <p>動きやすい服装とタオルをお持ちください。ラケットは無料でお貸しします。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2 style="color: white; margin-bottom: 30px; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">今すぐ始めよう！</h2>
+        <div class="cta-buttons">
+            <a href="#" class="cta-button primary">LINE友だち追加で簡単予約</a>
+            <a href="#" class="cta-button secondary">お問い合わせフォーム</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
